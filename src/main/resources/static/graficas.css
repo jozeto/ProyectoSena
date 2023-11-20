@@ -1,0 +1,12 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.bar {
+    transition: fill 0.3s ease;
+}
+
+.bar:hover {
+    fill: darkgray;
+}

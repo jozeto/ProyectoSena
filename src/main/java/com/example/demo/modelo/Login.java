@@ -10,24 +10,24 @@ import jakarta.persistence.Table;
 @Table(name = "login")
 public class Login {
 
-	@Id
+	@Id  
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String usuario;
 	private String correo;
-	private String contraseña;
+	private String contrasena;
 	private int rool;
 	
 	public Login() {
 		
 	}
 
-	public Login(int id, String usuario, String correo, String contraseña, int rool) {
+	public Login(int id, String usuario, String correo, String contrasena, int rool) {
 		super();
 		this.id = id;
 		this.usuario = usuario;
 		this.correo = correo;
-		this.contraseña = contraseña;
+		this.contrasena = contrasena;
 		this.rool = rool;
 	}
 
@@ -55,12 +55,12 @@ public class Login {
 		this.correo = correo;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasena() {
+		return contrasena;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	public int getRool() {

@@ -42,4 +42,6 @@ public class PersonaService implements IpersonaService{
 		data.deleteById(id);		
 	}
 
+
+
 }

@@ -17,20 +17,24 @@ public class LoginService implements IloginService{
 	private Ilogin data;
 
 	@Override
-	public List<Login> listar() {		
+	public List<Login> listarr() {		
 		return (List<Login>)data.findAll();
 	}
 
 	@Override
 	public Optional<Login> listarId(int id) {
 		// TODO Auto-generated method stub
-		return Optional.empty();
+		return data.findById(id);
 	}
 
 	@Override
 	public int save(Login p) {
-		// TODO Auto-generated method stub
-		return 0;
+		int res=0;
+		Login empleado=data.save(p);
+		if(!empleado.equals(null)) {
+			res=1;
+		}
+		return res;
 	}
 
 	@Override
@@ -40,3 +44,5 @@ public class LoginService implements IloginService{
 	}
 
 }
+
+

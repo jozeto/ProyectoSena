@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+body, html {
+	background-image:
+		url('https://marketplace.canva.com/EAEK4dC2olw/1/0/1600w/canva-arco%C3%ADris-gradiente-rosa-y-naranja-fondo-virtual-c3PYha1JI9M.jpg');
+	height: 100%;
+}
+
+#profile-img {
+	height: 180px;
+}
+
+.h-80 {
+	height: 80% !important;
+}
