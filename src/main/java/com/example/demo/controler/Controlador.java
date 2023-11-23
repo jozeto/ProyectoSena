@@ -1,12 +1,18 @@
 package com.example.demo.controler;
 
 import java.io.ByteArrayInputStream;
-import java.util.HashMap;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.sl.usermodel.Sheet;
+
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -19,6 +25,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.interfaceService.IcomprasService;
 import com.example.demo.interfaceService.IinventarioService;
@@ -59,19 +67,32 @@ public class Controlador {
 	}
 	
 	
-	
-	
-    @GetMapping("/chart")
+	 @SuppressWarnings("null")
+	@PostMapping("/upload")
+	    public String handleFileUpload(@RequestParam("file") MultipartFile file) {
+	        try (InputStream inputStream = file.getInputStream()) {
+	            Workbook workbook = WorkbookFactory.create(inputStream);
+	            @SuppressWarnings("rawtypes")
+				Sheet sheet = (Sheet) workbook.getSheetAt(0);
 
+	            // Iterar sobre filas y columnas para procesar los datos (ejemplo)
+	            for (int i = 0; i <= ((org.apache.poi.ss.usermodel.Sheet) sheet).getLastRowNum(); i++) {
+	                Row row;
+					row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(i); {
+	                    Object cell = null;
+						// Procesar el valor de la celda según tus necesidades
+	                    System.out.print(cell.toString() + "\t");
+	                }
+	                System.out.println();
+	            }
 
-    private Map<String, Integer> obtenerDatosEstadisticos() {
-        // Lógica para obtener datos (puedes reemplazar esto con tus propios datos)
-        Map<String, Integer> datos = new HashMap<>();
-        datos.put("Categoria 1", 30);
-        datos.put("Categoria 2", 45);
-        datos.put("Categoria 3", 25);
-        return datos;
-    }
+	        } catch (IOException | EncryptedDocumentException ex) {
+	            ex.printStackTrace();
+	            // Manejar la excepción según tus necesidades
+	        }
+
+	        return "redirect:/"; // Redirigir a la página principal después de la carga
+	    }
 	
 
 	@GetMapping("/export/all")
@@ -89,7 +110,7 @@ public class Controlador {
 		return new UsuarioRegistroDTO();
 	}
 
-	@GetMapping
+	@GetMapping("/sss")
 	public String mostrarFormularioDeRegistro() {
 		return "registro";
 	}
@@ -195,7 +216,7 @@ public class Controlador {
 		return "login";
 	}
 	
-	@GetMapping("/")
+	@GetMapping("/A")
 	public String verPaginaDeInicio(Model modelo) {
 
 		return "index";
